@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<!--
+	TripAdvise Register Page
+-->
+<html>
+    <head>
+        <title>TripAdvise Register</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="images/sun.jpg">
+         <!-- PageHeader -->
+		<div class="pageheader">
+			<a href="index.html" class="logo">TripAdvise</a>
+			<div class="pageheader-right">
+			  <a href="index.html">Home</a>
+			  <a href="login.html">Login</a>
+			  <a class="active"  href="register.html">Register</a>
+			</div>
+		  </div>
+    </head>
+<!-- ..>>> body part -->
+    <body>
+      <div id ="loginbg">
+        <img src="images/bgpattern.png" alt="">
+      </div>
+        <form action="action_page.php" method="post">
+            <div class="loginimgcontainer">
+              <img src="images/sun.jpg" alt="logo" class="loginavatar">
+            </div>
+          
+            <div class="logincontainer">
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="uname" required>
+              <br>
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required>
+              <br>
+              <label for="fname"><b>First Name</b></label>
+              <input type="text" placeholder="Enter First Name" name="fname" required>
+              <br>
+              <label for="lname"><b>Last Name</b></label>
+              <input type="text" placeholder="Enter Last Name" name="lname" required>
+              <br>
+              <label for="email"><b>Email</b></label>
+              <input type="email" placeholder="Enter Email" name="email" required>
+              <br>
+              <button type="submit" class="loginbutton">Login</button>
+            </div>
+          </form>
+    </body>
+</html>

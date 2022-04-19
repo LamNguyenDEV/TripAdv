@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+
+<!-- // edit -->
+<div id ="loginbg">
+  <img src="images/bgpattern.png" alt="">
+</div>
+
+
+          <!-- Makes POST request to /login route -->
+          <form action="/login" method="POST">
+            <div class="loginimgcontainer">
+              <img src="images/sun.jpg"  alt="logo" class="loginavatar">
+            </div>
+            <div class="logincontainer">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="username"placeholder="Enter Email">
+            
+            
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" placeholder="Enter Password">
+  
+            <button type="submit" class="loginbutton">Login</button>
+          </div>
+          </form>
+
+  
+</div>
+
+<%- include('partials/footer') %>
