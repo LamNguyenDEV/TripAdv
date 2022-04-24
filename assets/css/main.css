@@ -460,6 +460,36 @@
 
 			}
 
+/* Post Destination */
+.thumbnails .boxdestination {
+	margin: 0 1em 2em 1em;
+	width: 80%;
+	color: white;
+}
+
+	@media screen and (max-width: 1280px) {
+
+		.thumbnails .box {
+			width: 45%;
+		}
+
+	}
+
+	@media screen and (max-width: 736px) {
+
+		.thumbnails .box {
+			width: 100%;
+		}
+
+	}
+
+
+	hr{
+		color: white;
+		border: none;
+		height: 1px;
+		background-color: white;
+	}
 /* Form */
 
 	form {
