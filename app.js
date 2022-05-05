@@ -36,9 +36,11 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+// connect local database
 mongoose.connect ("mongodb://localhost:27017/userTrip", {useNewUrlParser: true});
-//
-
+//connect remote database
+// mongoose.connect("mongodb+srv://caracciod1:<password>@cluster0.mz6vx.mongodb.net/test,{useNewUrlParser: true}); 
+// Schema for user model
 const userSchema =  new mongoose.Schema ({
     email: String ,
     password: String,
@@ -46,12 +48,32 @@ const userSchema =  new mongoose.Schema ({
     // googleId: String,
     secret: String
 }); 
+// Schema for places
+const placeSchema =  new mongoose.Schema ({
+    namePlace: { type :String , unique: false},
+    review: String,
+    userid: { type :String , unique: false},
+    time: { type :String , unique: false},
+    rateHeart: { type :String , unique: false},
+    productPackages:{ type :String , unique: false},
+    cultural: { type :String , unique: false},
+    gastronomy:{ type :String , unique: false},
+    shopping: { type :String , unique: false},
+    infrastructureTransport:{ type :String , unique: false},
+    landscapeNaturalResource:{ type :String , unique: false},
+    userGmail: { type :String , unique: false}, 
+}); 
+// connect passportLocal Mongoose plugin 
+// placeSchema.plugin(passportLocalMongoose);
+placeSchema.plugin(findOrCreate);
 // connect passportLocal Mongoose plugin 
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
 // new User model
 const User = new mongoose.model("User", userSchema); 
+// new Place model
+const Place = new mongoose.model("Place", placeSchema); 
 
 // use static authenticate method of model in LocalStrategy
 passport.use(new LocalStrategy(User.authenticate()));
@@ -97,6 +119,8 @@ app.get("/homepage", function (req, res) {
 
 //handle register pages
 app.post ("/register", function (req, res) {
+    // console.log(req.body.fullname);
+
    
         User.register({username: req.body.username}, req.body.password , function(err, user){
             if(err) {
@@ -105,6 +129,14 @@ app.post ("/register", function (req, res) {
     
             }else {
                 passport.authenticate("local") (req,res, function(){
+
+                    User.findById(req.user.id, function (err,foundUser) {
+                        if(!err) {foundUser.name=req.body.fullname ;
+                        foundUser.save();
+                        }
+
+                    });
+
                     res.redirect("/homepage");
                 });
             }
@@ -143,56 +175,142 @@ app.get("/logout", (req,res)=>{
 // --->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>handle each section
 // handle each destination
 app.
-get("/newyork", function (req, res) {
+    get("/newyork", function (req, res) {
+        console.log(req.user.username); 
+        if( req.isAuthenticated()) { 
+            
+            Place.find({ namePlace:"newyork"}, function (err,docs){
+                if(err) {
+                    console.log(err);
+                    res.render("newyork",{newYorkReview:res.locals.newyorkReview});
 
-    if( req.isAuthenticated()) {
-        res.render("newyork");
-    }else {
-        res.redirect("login");
+                } else {
+                    
+                    res.render("newyork",{newYorkReview:docs,user:req.user});
+                    
+                } // use res.locals for data in render template
+             });
+            
+            
+            
+        }else {
+            res.redirect("login");
+        }
+    
+    })
+
+    .get("/tokyo", function (req, res) {
+
+        
+
+        if( req.isAuthenticated()) {
+            
+            res.render("tokyo");
+        }else {
+            res.redirect("login");
+        }  
+    })
+    .get("/sydney", function (req, res) {
+
+        if( req.isAuthenticated()) {
+            res.render("sydney");
+        }else {
+            res.redirect("login");
+        }  
+    })
+    .get("/cairo", function (req, res) {
+
+        if( req.isAuthenticated()) {
+            console.log("hello Cairo");
+            res.render("cairo");
+           
+        }else {
+            res.redirect("login");
+        }  
+    })
+    .get("/rome", function (req, res) {
+
+        if( req.isAuthenticated()) {
+            res.render("rome");
+        }else {
+            res.redirect("login");
+        }  
+    })
+    .get("/paris", function (req, res) {
+
+        if( req.isAuthenticated()) {
+            res.render("paris");
+        }else {
+            res.redirect("login");
+        }  
+    });
+// handle post each destination
+app.post("/newyork", function(req,res){
+    console.log("post /newyork");
+    const submittedSecret= req.body.secret;
+    const nameReview = req.body.name;  
+    
+    Place.create({namePlace: "newyork",
+                    review: submittedSecret,
+                    userid: req.body.userfullName,
+                    time: new Date(),
+                    rateHeart:req.body.rateHeart, 
+                    productPackages:req.body.productPackages,
+                    cultural: req.body.cultural,
+                    gastronomy:req.body.gastronomy,
+                    shopping: req.body.shopping,
+                    infrastructureTransport:req.body.Infras_transport,
+                    landscapeNaturalResource:req.body.landscape,
+                    userGmail: req.body.userEmail,                 
+
+},function (err,small){
+    if (err) {return console.log(err);
+    } else { 
+        small.save();
+        res.redirect("newyork")}
+
+});
+})
+
+
+
+ // handle delete function 
+//  app.post("/delete", catchAsync (async (req, res)=>{
+//     console.log("jajajaa");
+//     res.send("hahahaha");
+//  }));
+    app.post("/newyork/delete", function (req,res){
+        console.log("post nevr go here")
+        console.log(req.body.idReview);
+        const checkReviewId = req.body.checkbox;
+     Place.findByIdAndRemove(checkReviewId, (err)=>{
+        if(!err) { res.redirect("/newyork")
+    } else {
+        console.log("not found the ID review")
     }
-   
-})
+     })  
+       
+        
+    });
+// create section for
 
-.get("/tokyo", function (req, res) {
+  
 
-    if( req.isAuthenticated()) {
-        res.render("tokyo");
-    }else {
-        res.redirect("login");
-    }  
-})
-.get("/sydney", function (req, res) {
+    // User.findById(req.user.id, function (err,foundUser){
+    //     if(err) {
+    //         console.log(err);
+    //     } else {
+    //         if(foundUser) {
+    //             foundUser.secret = submittedSecret;
+    //             foundUser.save(function(){
+    //                 res.redirect("/");
+    //             });
+    //         }
+    //     }
+    // })
 
-    if( req.isAuthenticated()) {
-        res.render("sydney");
-    }else {
-        res.redirect("login");
-    }  
-})
-.get("/cairo", function (req, res) {
 
-    if( req.isAuthenticated()) {
-        res.render("cairo");
-    }else {
-        res.redirect("login");
-    }  
-})
-.get("/rome", function (req, res) {
 
-    if( req.isAuthenticated()) {
-        res.render("rome");
-    }else {
-        res.redirect("login");
-    }  
-})
-.get("/paris", function (req, res) {
-
-    if( req.isAuthenticated()) {
-        res.render("paris");
-    }else {
-        res.redirect("login");
-    }  
-})
 
 
 

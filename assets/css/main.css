@@ -1558,3 +1558,10 @@
 			}
 
 		}
+			/* // review section CSS */
+			
+		.reviewRate {
+			color: moccasin;
+			font-size: smaller;
+			font-weight: 400;
+			}
