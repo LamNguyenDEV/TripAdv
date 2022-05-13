@@ -86,7 +86,10 @@
                                 </div>
                                 <!-- // Review section -->
                                 <div class="review" style=" all: revert;">
-                                    <h3>Review</h3>
+                                    <h3 style="font-size: 1.35em;
+                                    color: aqua;
+                                    /* font-size: large; */
+                                    font-style: oblique;">Review</h3>
                                     <% newYorkReview.forEach(function (review){ %>
                                         <form action="/newyork/delete" method="post">
                                         <p class="userName" style="color:yellow ;font-style: italic; font-weight: 250;"><%=review.userid%>
@@ -95,7 +98,7 @@
                                         </p>
                                         <div class="userReview" style="color: white; background-color: lightseagreen; border-radius: 15px; font-weight: 350;  position: relative; margin: 0%; padding: 0%; border: 0ch; box-sizing: unset;"> 
                                            
-                                            <div class=" reviewStar" style=" display: grid; grid-template-columns: 20% 25% 30% 15% ; padding: 0%; margin: 0%; ">
+                                            <div class=" reviewStar" style=" display: grid; grid-template-columns: 50% 50% ; padding: 0%; margin: 0%; ">
                                                 <span class="rateHeart" style="color: hotpink; font-size: x-large; padding: 0%; margin: 0%;"><%=review.rateHeart%> <em style=" color:moccasin ;font-size: smaller;font-weight: 400;">Favourite</em> </span>
                                                 <span class="rateHeart" style="color: rgb(233, 255, 105); font-size: x-large;font-style: italic"><%=review.productPackages%><span class=" reviewRate">&nbsp;&nbsp;Tourist products and packages</span></span>
                                                 <span class="rateHeart" style="color: yellow; font-size: x-large;font-style: italic"><%=review.cultural%><span class=" reviewRate">&nbsp;&nbsp;Cultural attractions</span></span>
@@ -114,7 +117,7 @@
                                                 <input type="checkbox" name="checkbox" style="appearance: auto;
                                                 display: inline;
                                                 float: left;
-                                                margin-right: -5rem;
+                                                margin-right: -4rem;
                                                 opacity: 200;
                                                 width: 10em;
                                                 height: 20px;
@@ -141,7 +144,10 @@
                                       
                                       <!-- /// end -->
                                     <div class="form-group">
-                                    <h3>Leave a Review</h3>
+                                    <h3 style="font-size: 1.35em;
+                                    color: aqua;
+                                    /* font-size: large; */
+                                    font-style: oblique;">Leave a Review</h3>
                                          <!-- // demo rate star  -->
                                          <div class="reviewForm">
 
