@@ -23,7 +23,7 @@ https://immense-falls-85167.herokuapp.com/
 Go to homepage at the link:
 https://immense-falls-85167.herokuapp.com/
 
-    Register your account
+    Register a new account
 
     Login to an account
 
@@ -60,7 +60,7 @@ https://immense-falls-85167.herokuapp.com/
     Completed on May 12 2022
 
 ##  Note
-    For developer who wish not to deployment the project on Heroku. They can run the project by foloowing theese steps below:
+    For developer who wish not to deploy the project on Heroku. They can run the project by foloowing theese steps below:
 
     install npm node JS
 
