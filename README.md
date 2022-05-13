@@ -62,9 +62,10 @@ https://immense-falls-85167.herokuapp.com/
 ##  Note
     For developer who wish not to deploy the project on Heroku. They can run the project by foloowing theese steps below:
 
-    install npm node JS
+    Install npm node JS . Here is the link to follow:
+    https://phoenixnap.com/kb/install-node-js-npm-on-windows
 
-    install the folloing packages:
+    Install the following packages:
         "alert": "^5.0.10",
         "body-parser": "^1.20.0",
         "dotenv": "^16.0.0",
@@ -81,7 +82,7 @@ https://immense-falls-85167.herokuapp.com/
         "passport-local-mongoose": "^7.0.0",
         "vnm": "^1.3.2
     
-    Afeter sucessful intall these packages.Run these command line in terminal: 
+    After sucessful intall these packages. Run these command line in terminal: 
     node app.js
 
 
