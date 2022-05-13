@@ -2,4 +2,4 @@
 
 Social Media website for Travel Locations
 
-https://zachgiaco.github.io/
+https://immense-falls-85167.herokuapp.com/
