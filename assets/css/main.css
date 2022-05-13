@@ -1565,3 +1565,15 @@
 			font-size: smaller;
 			font-weight: 400;
 			}
+
+			.info h2 {
+				color: mediumspringgreen;
+				font-style: italic
+			}
+
+			.info h4 {
+				/* color: lemonchiffon; */
+				font-style: oblique;
+    			color: powderblue;
+    			font-family: system-ui;
+			}
