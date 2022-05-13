@@ -48,7 +48,7 @@ app.use(passport.session());
 //connect remote database
 mongoose.connect("mongodb+srv://admin-lam:Test123@cluster0.velxy.mongodb.net/tripUser",{useNewUrlParser: true});
 // mongoose.connect("mongodb+srv://caracciod1:<password>@cluster0.mz6vx.mongodb.net/test,{useNewUrlParser: true}); 
-// Schema for user model
+// Schema for user model.
 const userSchema =  new mongoose.Schema ({
     email: String ,
     password: String,
